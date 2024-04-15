@@ -1,0 +1,434 @@
+{
+	"info": {
+		"_postman_id": "d1a3631f-7924-4ba3-9855-86e84a2d929e",
+		"name": "APIBooks REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Request Information of a book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"exemplar_id\", pm.response.json().exemplarId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-0000000000\",\r\n    \"title\": \"Booker\",\r\n    \"language\": \"es-MX\",\r\n    \"descriptions\": [\r\n        {\r\n            \"text\": \"text1\",\r\n            \"language\": \"es-MX\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}books/",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Book Information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-0000000000\",\r\n    \"title\": \"Gambler\",\r\n    \"language\": \"es-MX\",\r\n    \"descriptions\": [\r\n        {\r\n            \"text\": \"text1\",\r\n            \"language\": \"es-MX\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(\"Gambler\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Language",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-0000000000\",\r\n    \"title\": \"Gambler\",\r\n    \"language\": \"en-GB\",\r\n    \"descriptions\": [\r\n        {\r\n            \"text\": \"text1\",\r\n            \"language\": \"es-MX\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Language\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.language).to.eql(\"en-GB\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isbn\": \"978-0000000000\",\r\n    \"title\": \"Gambler\",\r\n    \"language\": \"en-GB\",\r\n    \"descriptions\": [\r\n        {\r\n            \"text\": \"text2\",\r\n            \"language\": \"en-GB\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch and Check Changes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Description text\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.descriptions[0].text).to.eql(\"text2\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check for changed Description language\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.descriptions[0].language).to.eql(\"en-GB\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Information of a deleted Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}books/978-0000000000",
+							"host": [
+								"{{base_url}}books"
+							],
+							"path": [
+								"978-0000000000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api/"
+		},
+		{
+			"key": "exemplar_id",
+			"value": ""
+		}
+	]
+}
